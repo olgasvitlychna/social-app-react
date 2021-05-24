@@ -1,0 +1,74 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.login-page {
+  background-color: #15181d;
+  min-height: 100vh;
+}
+
+
+.login-page h2 {
+  padding-top: 50px;
+  padding-bottom: 30px;
+  color: rgb(27, 236, 236);
+  font-size: 30px;
+}
+
+.login-page form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.login-page form input {
+  margin-bottom: 20px;
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid rgb(255, 249, 249);
+  border-radius: 5px;
+  color: white;
+  padding-left: 10px;
+  line-height: 30px;
+  outline: none;
+}
+.login-page form input:hover {
+  border: 1px solid rgb(27, 236, 236);
+}
+.login-page form input:focus {
+  border: 1px solid rgb(27, 236, 236);
+}
+
+.login-page form button {
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400px;
+  color: rgb(27, 236, 236);
+  background-color: transparent;
+  border: 1px solid rgb(151, 144, 144);
+  border-radius: 5px;
+  padding: 10px 20px;
+
+  margin: auto;
+}
+.login-page form button:hover {
+  box-shadow: rgb(102, 252, 241) 0px 0px 10px 0px inset,
+    rgb(102, 252, 241) 0px 0px 10px 0px;
+}
+.login-page p {
+  font-size: 17px;
+  color: white;
+  padding-top: 15px;
+}
+.login-page p a {
+  font-size: 17px;
+  color: rgb(27, 236, 236);
+  text-decoration: none;
+  cursor: pointer;
+}
+.login-page p a:hover {
+  font-weight: bold;
+}

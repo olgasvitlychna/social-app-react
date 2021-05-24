@@ -1,0 +1,95 @@
+
+.form-container {
+  position: fixed;
+  top: 50%; 
+  left: 50%;
+  transform:translate(-50%, -50%);
+  max-width: 300px;
+  margin: auto;
+  background-color: rgb(32, 30, 30);
+  padding: 15px;
+  border-radius: 5px;
+  padding-bottom: 20px;
+  
+  
+}
+.form-container.close{
+  transform: scale(0);
+}
+.form-container h2 {
+  position: relative;
+  color: rgb(27, 236, 236);
+}
+.form-container h2 span {
+  position: absolute;
+  right: 0;
+  color: rgba(247, 16, 16, 0.466);
+  top: -10px;
+  font-weight: bold;
+}
+
+.form-container h2 span:hover {
+  cursor: pointer;
+  color: rgb(247, 16, 16);
+  
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  
+  /* justify-content: center; */
+  margin-top: 20px;
+  padding: 0 15px;
+}
+
+.form-container form input {
+  margin-bottom: 20px;
+  height: 30px;
+  background-color: transparent;
+  border: 1px solid rgb(151, 144, 144);
+  border-radius: 5px;
+  color: white;
+  padding-left: 10px;
+  line-height: 30px;
+  outline: none;
+  
+}
+.form-container form input:hover {
+  border: 1px solid rgb(27, 236, 236);
+}
+.form-container form input:focus {
+  border: 1px solid rgb(27, 236, 236);
+}
+
+.form-container form button {
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400px;
+  color: rgb(27, 236, 236);
+  background-color: transparent;
+  border: 1px solid rgb(151, 144, 144);
+  border-radius: 5px;
+  padding: 10px 20px;
+  
+  margin: auto;
+  margin-bottom: 20px;
+}
+.form-container form button:hover {
+  
+  box-shadow: rgb(102, 252, 241) 0px 0px 10px 0px inset,
+    rgb(102, 252, 241) 0px 0px 10px 0px;
+}
+.form-container p{
+    font-size: 17px;
+    color: white;
+}
+.form-container p a{
+    font-size: 17px;
+    color: rgb(27, 236, 236);
+    text-decoration: none;
+    cursor: pointer;
+}
+.form-container p a:hover{
+    font-weight: bold;
+}
