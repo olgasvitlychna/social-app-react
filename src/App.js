@@ -8,6 +8,7 @@ import Navigations from './Navigation'
 
 import Login from './Login';
 import SignUp from './SignUp';
+import Posts from './Posts';
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,7 +25,7 @@ function App() {
     },
     10000) 
 }, [])
-
+  
   return (
     <Router>
       <div className="App">
@@ -35,6 +36,9 @@ function App() {
         {modalActive && <PopUp closeModal={setModalActive}/>}
 
         <Switch>
+        <Route path='/posts'>
+            <Posts />
+          </Route>
           <Route path='/login'>
             <Login />
           </Route>

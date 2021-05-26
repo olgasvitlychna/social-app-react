@@ -1,6 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './PopUp.css';
 
+import {
+   
+    Link
+} from "react-router-dom";
 
 function PopUp(props) {
     
@@ -16,7 +20,9 @@ function PopUp(props) {
             
             <button>log in</button>
             </form>
-            <p>Dont have an account?<a href=""> Sign Up</a></p>
+            
+                <p>Dont have an account?<Link to='/signUp'>Sign Up</Link></p>
+           
         </div>
     )
 }

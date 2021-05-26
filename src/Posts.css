@@ -1,0 +1,55 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.posts-page {
+  background-color: #15181d;
+  min-height: 100vh;
+}
+.postsContainer {
+  max-width: 800px;
+  margin: auto;
+
+  margin-bottom: 5px;
+  padding: 20px;
+  background-color: rgb(31, 40, 51);
+}
+.postsContainer .usersInformation {
+  display: flex;
+  align-items: center;
+}
+.postsContainer .usersInformation span.userName {
+  font-weight: 500px;
+  color: rgb(27, 236, 236);
+  font-size: 20px;
+  margin-left: 10px;
+}
+.postsContainer .usersInformation span.postsData {
+  color: rgb(197, 198, 199);
+  font-size: 15px;
+  margin-left: 10px;
+}
+.postsContainer .post {
+  margin: 15px 0px;
+  text-align: left;
+  color: rgb(197, 198, 199);
+  font-size: 20px;
+}
+
+.postsContainer .like {
+    text-align: right;
+    color: rgb(197, 198, 199);
+    font-size: 15px;
+}
+
+.postsContainer .like span::before{
+    content: '\2764';
+    color: lightcoral;
+    font-size: 15px;
+    margin-right: 5px;
+}
+.postsContainer .like span:hover::before{
+    cursor: pointer;
+    color: red;
+}
