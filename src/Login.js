@@ -5,10 +5,11 @@ import {
 
     Link
 } from "react-router-dom";
+
 import axios from 'axios';
 // import SignUp from './SignUp'
 
-function Login() {
+function Login(props) {
 
 
     const [inputUsernameValue, setUsernameValue] = useState('');
@@ -18,10 +19,8 @@ function Login() {
     const sendLoginForm = (event) => {
         event.preventDefault()
         let postData = {
-            username: {inputUsernameValue},
-            password: {inputPasswordValue},
-
-            isAuth: false,
+            username: inputUsernameValue,
+            password: inputPasswordValue,
             ttl: 3600
         };
         
@@ -38,7 +37,10 @@ function Login() {
                 postData, 
                 axiosConfig)
             .then((res) => {
-                console.log("RESPONSE RECEIVED: ", res);
+                console.log(res.data);
+
+                localStorage.setItem('user', JSON.stringify(res.data));
+                props.setUser(res.data);
             })
             .catch((err) => {
                 console.log("AXIOS ERROR: ", err);

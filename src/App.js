@@ -16,7 +16,8 @@ import {
 } from "react-router-dom";
 
 function App() {
-  const [modalActive, setModalActive] = useState(false)
+  const [modalActive, setModalActive] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   useEffect(() => {
 
@@ -26,11 +27,13 @@ function App() {
     10000) 
 }, [])
   
+
+console.log(user);
   return (
     <Router>
       <div className="App">
 
-        <Navigations />
+        <Navigations user={user} />
 
 
         {modalActive && <PopUp closeModal={setModalActive}/>}
@@ -40,7 +43,7 @@ function App() {
             <Posts />
           </Route>
           <Route path='/login'>
-            <Login />
+            <Login setUser={setUser} />
           </Route>
           <Route path='/signUp'>
             <SignUp />
