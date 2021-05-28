@@ -33,7 +33,7 @@ console.log(user);
     <Router>
       <div className="App">
 
-        <Navigations user={user} />
+        <Navigations user={user} setUser={setUser}/>
 
 
         {modalActive && <PopUp closeModal={setModalActive}/>}
