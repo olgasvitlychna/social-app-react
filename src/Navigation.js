@@ -7,20 +7,20 @@ import './Navigations.css'
 import axios from 'axios'
 
 function Navigation(props) {
-    // const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user)
     const logout = (e) => {
         e.preventDefault();
         
         let logoutUserData = {
-            username: props.user,
-            jwtToken: props.user.jwt_token
+            
         };
         console.log(logoutUserData);
         let axiosConfig = {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': 'Bearer' + '<jwtToken>'
+                'Authorization': 'Bearer' + user.jwt_token
             }
         };
         
@@ -31,8 +31,8 @@ function Navigation(props) {
             .then((res) => {
                 console.log(res.data)
     
-                localStorage.setItem('user', JSON.stringify(res.data));
-                props.setUser(res.data);
+                localStorage.setItem('user', JSON.stringify(null));
+                props.setUser(null);
             })
             .catch((err) => {
                 console.log("AXIOS ERROR: ", err);

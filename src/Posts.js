@@ -1,48 +1,63 @@
-import React, { useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import './Posts.css'
 import axios from 'axios'
 
-
+import Postslist from './Postslist'
 function Posts() {
-
+    const [postsList, setPostsList] = useState();
+    
     useEffect(() => {
-        const newPost = (event) => {
 
-            event.preventDefault()
 
-            let postData = {
-                id: 172,
-                user_id: 4,
-                content: "Dolorem et laborum aperiam non aut quis quia. Recusandae neque quia ducimus nostrum cupiditate iure nesciunt. Magni et et debitis laboriosam id. Ea laborum quas magnam voluptatem animi et reprehenderit. Ducimus vitae sint totam est. Inventore et id impedit modi. Et impedit nobis perferendis ab. Totam aspernatur sint sapiente.",
-                created_at: "2020-07-14T07:13:22.000000Z",
-                updated_at: null
-            };
 
-            let axiosConfig = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
+
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+
+            }
+        };
+
+        axios.post(
+            'https://akademia108.pl/api/social-app/post/latest',
+            {},
+            axiosConfig)
+            .then((res) => {
+                // console.log(res.data);
+                const tickers = res.data;
+
+                let newPosts = []
+                for (const [ticker, postsContent] of Object.entries(tickers)) {
+                    let newPostsObj = {
+                        postsInf: ticker,
+                        content: postsContent.content,
+                        created_at: postsContent.created_at,
+                        userName: postsContent.user.username,
+                        userAvatar: postsContent.user.avatar_url
+                        // lastPost: postsContent.
+                    }
+                    newPosts.push(newPostsObj);
 
                 }
-            };
+                // console.log(newPosts)
+                return(
+                    setPostsList(newPosts)
+                )
 
-            axios.post(
-                'https://akademia108.pl/api/social-app/post/latest',
-                postData,
-                axiosConfig)
-                .then((res) => {
-                    console.log(res.data);
 
-                })
-                .catch((err) => {
-                    console.log("AXIOS ERROR: ", err);
-                })
-        }
+            })
+            .catch((err) => {
+                console.log("AXIOS ERROR: ", err);
+            })
+
     })
-
+    
+    console.log(postsList)
     return (
         <div className="posts-page">
-            <div className="postsContainer">
+            <Postslist postsList={postsList}/>
+            {/* <div className="postsContainer">
                 <div className='usersInformation'>
                     <span className='userName'>Olga</span> <span className='postsData' >1 day ago</span>
                 </div>
@@ -51,7 +66,7 @@ function Posts() {
 
                     <span> 123</span>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )

@@ -3,7 +3,8 @@ import './Login.css';
 
 import {
 
-    Link
+    Link,
+    Redirect
 } from "react-router-dom";
 
 import axios from 'axios';
@@ -14,7 +15,8 @@ function Login(props) {
 
     const [inputUsernameValue, setUsernameValue] = useState('');
     const [inputPasswordValue, setPasswordValue] = useState('');
-   
+    const user = JSON.parse(localStorage.getItem('user'));
+
 
     const sendLoginForm = (event) => {
         event.preventDefault()
@@ -51,6 +53,7 @@ function Login(props) {
 
     return (
         <div className="login-page">
+                {user && <Redirect to='/posts' />}
                 <div></div>
                 <h2>Please log in </h2>
                 <form action="#" onSubmit={sendLoginForm}>
