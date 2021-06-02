@@ -22,24 +22,31 @@ function App() {
   useEffect(() => {
 
     setTimeout(() => {
-      setModalActive(true) 
-    },
-    10000) 
-}, [])
-  
 
-console.log(user);
+      setModalActive(true)
+
+
+    },
+      10000)
+  }, [])
+
+
+  // console.log(user);
   return (
     <Router>
       <div className="App">
 
-        <Navigations user={user} setUser={setUser}/>
+        <Navigations user={user} setUser={setUser} />
 
+        {!user &&
+          <div>
+            {modalActive && <PopUp closeModal={setModalActive} />}
 
-        {modalActive && <PopUp closeModal={setModalActive}/>}
+          </div>
+        }
 
         <Switch>
-        <Route path='/posts'>
+          <Route path='/posts'>
             <Posts />
           </Route>
           <Route path='/login'>

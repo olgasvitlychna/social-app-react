@@ -54,3 +54,30 @@ header.App-header ul li a::after{
 header.App-header ul li a:hover::after{
   width: 100%;
 }
+
+header.App-header ul li button{
+  border: none;
+  background-color: transparent;
+  color: rgba(30, 216, 216, 0.973);
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+header.App-header ul li button::after{
+  display: block;
+  content: '';
+  height: 2px;
+  width: 0%;
+  background-color: rgb(14, 253, 253);
+  transition: width .3s ease-in-out;
+  position: relative;
+  top: 10px;
+}
+header.App-header ul li button:hover{
+  color: rgb(14, 253, 253);
+  font-weight: bold;
+}
+header.App-header ul li button:hover::after{
+  width: 100%;
+}

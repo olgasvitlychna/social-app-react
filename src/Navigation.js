@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {
     
     Link
@@ -8,7 +8,7 @@ import axios from 'axios'
 
 function Navigation(props) {
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(user)
+    // console.log(user)
     const logout = (e) => {
         e.preventDefault();
         
@@ -47,7 +47,7 @@ function Navigation(props) {
                         <li><Link to='/posts'>Posts</Link></li>
                         {!props.user && <li><Link to='/login'>Login</Link></li>}
                         {!props.user &&  <li><Link to='/signUp'>Sign Up</Link></li>}
-                        {props.user && <li><Link onClick={logout}>Logout</Link></li>}
+                        {props.user && <li><button onClick={logout}>Logout</button></li>}
                     </ul>
                 </nav>
                 

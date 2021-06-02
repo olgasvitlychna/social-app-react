@@ -39,7 +39,7 @@ function Login(props) {
                 postData, 
                 axiosConfig)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
 
                 localStorage.setItem('user', JSON.stringify(res.data));
                 props.setUser(res.data);
