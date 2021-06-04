@@ -6,7 +6,6 @@
 .posts-page {
   background-color: #15181d;
   min-height: 100vh;
-  
 }
 .postsContainer {
   max-width: 800px;
@@ -16,21 +15,20 @@
   background-color: rgb(31, 40, 51);
 }
 .postsContainer .avatar {
-    
-    border-radius:  50px;
-    height: 45px;
-    width: 45px;
+  border-radius: 50px;
+  height: 45px;
+  width: 45px;
 }
-.postsContainer .avatar .avatarImg{
-    object-fit: contain;
-    border-radius:  50px;
-    width: 100%;
-    height: 100%;
+.postsContainer .avatar .avatarImg {
+  object-fit: contain;
+  border-radius: 50px;
+  width: 100%;
+  height: 100%;
 }
 .postsContainer .usersInformation {
   display: flex;
   align-items: center;
-  
+  position: relative;
 }
 .postsContainer .usersInformation span.userName {
   font-weight: 500px;
@@ -44,6 +42,16 @@
   font-size: 15px;
   margin-left: 10px;
 }
+.postsContainer .usersInformation .deletePost{
+    position: absolute;
+    color: pink;
+    font-size: 15px;
+    right: 0;
+    top: 0;
+}
+.postsContainer .usersInformation .deletePost:hover{
+    color: red;
+}
 .postsContainer .post {
   margin: 20px 0px;
   text-align: left;
@@ -52,59 +60,157 @@
 }
 
 .postsContainer .like {
-    text-align: right;
-    color: rgb(197, 198, 199);
-    font-size: 15px;
+  text-align: right;
+  color: rgb(197, 198, 199);
+  font-size: 15px;
 }
 
-.postsContainer .like span::before{
-    content: '\2764';
-    color: lightcoral;
-    font-size: 15px;
-    margin-right: 5px;
+.postsContainer .like span::before {
+  content: "\2764";
+  color: lightcoral;
+  font-size: 15px;
+  margin-right: 5px;
 }
-.postsContainer .like span:hover::before{
-    cursor: pointer;
-    color: red;
+.postsContainer .like span:hover::before {
+  cursor: pointer;
+  color: red;
 }
 
 /* LOADER__________________________ */
 
 .lds-facebook {
-    display: inline-block;
-    position: relative;
-    width: 60px;
-    height: 80px;
-    
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 80px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 15px;
+  background: rgb(197, 198, 199);
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
   }
-  .lds-facebook div {
-    display: inline-block;
-    position: absolute;
-    left: 8px;
-    width: 15px;
-    background: rgb(197, 198, 199);
-    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  50%,
+  100% {
+    top: 14px;
+    height: 32px;
   }
-  .lds-facebook div:nth-child(1) {
-    left: 8px;
-    animation-delay: -0.24s;
-  }
-  .lds-facebook div:nth-child(2) {
-    left: 32px;
-    animation-delay: -0.12s;
-  }
-  .lds-facebook div:nth-child(3) {
-    left: 56px;
-    animation-delay: 0;
-  }
-  @keyframes lds-facebook {
-    0% {
-      top: 8px;
-      height: 64px;
-    }
-    50%, 100% {
-      top: 14px;
-      height: 32px;
-    }
-  }
+}
+
+/* postsInput_________________________ */
+
+.postsInput {
+  border: none;
+  background-color: transparent;
+  max-width: 800px;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  position: relative;
+}
+.postsInput textarea {
+  background-color: rgb(31, 40, 51);
+  border: none;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 15px;
+  color: rgb(197, 198, 199);
+  font-family: sans-serif;
+  resize: none;
+  margin-bottom: 50px;
+  outline: none;
+
+}
+
+.postsInput button {
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400px;
+  color: rgb(27, 236, 236);
+  background-color: transparent;
+  border: 1px solid rgb(255, 249, 249);
+  border-radius: 5px;
+  padding: 10px 20px;
   
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
+}
+.postsInput button:hover {
+  box-shadow: rgb(102, 252, 241) 0px 0px 10px 0px inset,
+    rgb(102, 252, 241) 0px 0px 10px 0px;
+}
+.error{
+    position: absolute;
+    left: 10px;
+    bottom: 28px;
+    color: red;
+}
+.agree-container{
+    position: fixed;
+  top: 50%; 
+  left: 50%;
+  transform:translate(-50%, -50%);
+  max-width: 500px;
+  margin: auto;
+  background-color: rgb(32, 30, 30);
+  padding: 15px;
+  border-radius: 5px;
+  padding-bottom: 20px;
+
+}
+.agree-container p{
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: rgb(197, 198, 199);
+
+}
+.agree-container button{
+    text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 400px;
+  color: rgb(27, 236, 236);
+  background-color: transparent;
+  
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  
+}
+.agree-container button.yes{
+    border: 1px solid rgb(29, 190, 14);
+}
+.agree-container button.yes:hover{
+    box-shadow: rgb(29, 190, 14) 0px 0px 10px 0px inset,
+    rgb(29, 190, 14) 0px 0px 10px 0px;
+}
+.agree-container button.cancel{
+    border: 1px solid rgb(206, 20, 20);
+}
+.agree-container button.cancel:hover{
+    box-shadow: rgb(206, 20, 20) 0px 0px 10px 0px inset,
+    rgb(206, 20, 20) 0px 0px 10px 0px;
+}

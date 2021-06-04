@@ -47,7 +47,7 @@ function Navigation(props) {
                         <li><Link to='/posts'>Posts</Link></li>
                         {!props.user && <li><Link to='/login'>Login</Link></li>}
                         {!props.user &&  <li><Link to='/signUp'>Sign Up</Link></li>}
-                        {props.user && <li><button onClick={logout}>Logout</button></li>}
+                        {props.user && <li><button onClick={logout} className='logout-btn'>Logout</button></li>}
                     </ul>
                 </nav>
                 
