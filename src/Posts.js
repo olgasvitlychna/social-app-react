@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './Posts.css'
 import axios from 'axios'
 import TimeAgo from 'timeago-react'
+import AddLike from './AddLike';
+import DeletePost from './DeletePost';
 // import timeAgo from '../utils/DateUtils';
-
+import DeletePopUp from './DeletePopUp'
 function Posts() {
     const [postsList, setPostsList] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -19,90 +21,21 @@ function Posts() {
 
     // __________________________LATESTS POSTS______________________________
     useEffect(() => {
-        let axiosConfig;
-        if (user) {
-            setLogInUser(true)
-            axiosConfig = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': 'Bearer ' + user.jwt_token
-                }
-            };
-        } else {
-            axiosConfig = {
-
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-
-                }
-            };
-        }
-
-        // console.log(axiosConfig)
-        axios.post(
-            'https://akademia108.pl/api/social-app/post/latest',
-            {},
-            axiosConfig)
-            .then((res) => {
-
-                setPostsList(res.data);
-
-                setLastPostDate(res.data[res.data.length - 1].created_at)
-
-            })
-            .catch((err) => {
-                console.log("AXIOS ERROR: ", err);
-            })
+        
+        getLatestPosts()
 
     }, [])
 
-    // __________________DELETE POSTS_________________________
     
-    const deletePostPopUp = () => {
-        console.log(777)
-        setDeletePostAgree(true)
-    }
+
+    
+
 
     const postsElements = postsList.map((post) => {
         // setLastPostDate(post.created_at)
+        
 
-        console.log(post.id)
-
-
-        const deletePost = (e) => {
-            e.preventDefault()
-
-            let axiosConfig;
-            if (user) {
-
-                axiosConfig = {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Authorization': 'Bearer ' + user.jwt_token
-                    }
-                };
-            }
-
-            // console.log(axiosConfig)
-            axios.post(
-                'https://akademia108.pl/api/social-app/post/delete',
-                {
-                    post_id: post.id
-                },
-                axiosConfig)
-                .then((res) => {
-                    // setUserPost(res.data.post.content)
-                    // setPostsList(newPosts.unshift(res.data.post.content));
-
-                })
-                .catch((err) => {
-                    console.log("AXIOS ERROR: ", err);
-                    setError(true)
-                })
-        }
+        
 
         return (
 
@@ -120,7 +53,7 @@ function Posts() {
                     {user && user.username === post.user.username &&
                         <div>
                             <span className='userName'>You</span>
-                            <span className='deletePost' onClick={deletePostPopUp}>X</span>
+                            <DeletePost postId={post} deletePostAgreePopUp={setDeletePostAgree}/>
                         </div>
                     }
                     {user && user.username !== post.user.username &&
@@ -130,11 +63,10 @@ function Posts() {
 
                 </div>
                 <p className="post">{post.content}</p>
-                <div className='like'>
 
-                    <span> 123</span>
-                </div>
-                
+                <AddLike postId={post} />
+
+
 
             </div>
 
@@ -199,7 +131,46 @@ function Posts() {
     // }
 
     // _____________________ADD USERS POSTS_______________
+    const getLatestPosts = () => {
+        let axiosConfig;
+        if (user) {
+            setLogInUser(true)
+            axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + user.jwt_token
+                }
+            };
+        } else {
+            axiosConfig = {
+
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+
+                }
+            };
+        }
+
+        // console.log(axiosConfig)
+        axios.post(
+            'https://akademia108.pl/api/social-app/post/latest',
+            {},
+            axiosConfig)
+            .then((res) => {
+
+                setPostsList(res.data);
+                // console.log(res.data)
+                setLastPostDate(res.data[res.data.length - 1].created_at)
+
+            })
+            .catch((err) => {
+                console.log("AXIOS ERROR: ", err);
+            })
+    }
     const addPosts = (e) => {
+
         e.preventDefault()
         let axiosConfig;
         if (user) {
@@ -217,16 +188,15 @@ function Posts() {
         axios.post(
             'https://akademia108.pl/api/social-app/post/add',
             {
-                date: lastPostDate,
-                username: 'You',
                 content: userPost
             },
             axiosConfig)
             .then((res) => {
-                setUserPost(res.data.post.content)
-                // setPostsList(newPosts.unshift(res.data.post.content));
-                // console.log(res.data)
-                setLastPostDate(res.data.created_at)
+                // setUserPost(res.data.post.content)
+                // setPostsList([res.data.post].concat(postsList));
+                getLatestPosts();
+                console.log(res.data)
+                // setLastPostDate(res.data.created_at)
 
 
             })
@@ -263,12 +233,10 @@ function Posts() {
                 <div className="lds-facebook"><div></div><div></div><div></div></div>
             }
             {deletePostAgree &&
-                    <div className='agree-container'>
-                        <p>Are you sure?</p>
-                        <button className='yes' >Yes</button>
-                        <button className='cancel' onClick={() => setDeletePostAgree(false)}>Cancel</button>
-                    </div>
+                
+                <DeletePopUp deletePostAgreePopUp={setDeletePostAgree}/>
             }
+            
         </div>
     )
 }
